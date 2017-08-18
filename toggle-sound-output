@@ -1,0 +1,19 @@
+#! /bin/bash
+
+get_ports() {
+    pacmd list-sinks | grep "^\s*\[Out\]" | cut -d ":" -f 1
+}
+
+get_active_port(){
+    pacmd list-sinks | grep "active port: <\[Out" | cut -d '<' -f 2 | tr -d '<>'
+}
+
+active_port=$(get_active_port)
+get_ports | while read port; do
+    if [ "$active_port" != "$port" ];then
+        notify-send "$port"
+        echo "Swith to $port"
+        pacmd set-sink-port 1 "$port"
+        exit 0
+    fi
+done
