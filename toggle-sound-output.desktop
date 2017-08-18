@@ -1,0 +1,7 @@
+[Desktop Entry]
+Name=ToggleSoundOutput
+Type=Application
+Exec=/home/hayden/bin/toggle-sound-output
+Icon=gnome-audio
+StartupNotify=false
+X-Desktop-File-Install-Version=0.23
